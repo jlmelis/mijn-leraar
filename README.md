@@ -1,6 +1,6 @@
 # mijn-leraar
 
-*Your own teacher* — agent-agnostic skills that turn any learning goal into an adaptive, step-by-step build tutorial. The tutorial always ends in **real code with real function**, never a hello-world.
+*Your own teacher* — agent skills that turn any learning goal into an adaptive, step-by-step build tutorial. The tutorial always ends in **real code with real function**, never a hello-world.
 
 ## The pipeline
 
@@ -18,7 +18,7 @@
 ```bash
 pi install ./mijn-leraar          # local path
 # or
-pi install git:github.com/<you>/mijn-leraar
+pi install git:github.com/jlmelis/mijn-leraar
 ```
 
 Then just ask: *"I want to learn smolagents, generate an idea"* — the agent loads `leraar-idea` and the pipeline starts.
