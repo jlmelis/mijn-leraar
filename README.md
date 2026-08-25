@@ -37,7 +37,7 @@ ln -s /path/to/mijn-leraar/skills/leraar-* ~/.claude/skills/
 ```
 <learning-project>/
 ├── leraar/
-│   ├── idee.md          # the idea (and why it's real)
+│   ├── idea.md          # the idea (and why it's real)
 │   ├── tutorial.md      # objectives, dated docs, definition of done
 │   ├── PROGRESS.md      # the tracker (current step, statuses, notes)
 │   └── steps/           # one concept per step

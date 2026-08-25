@@ -65,7 +65,7 @@ Reject or reshape any idea that fails these criteria:
 
 ### 5. Produce the idea brief
 
-When the learner picks an idea, write `leraar/idee.md` in the project folder (create the folder if needed):
+When the learner picks an idea, write `leraar/idea.md` in the project folder (create the folder if needed):
 
 ```markdown
 # Idea: <name>

@@ -19,7 +19,7 @@ Turns a project idea into an adaptive, step-by-step build tutorial. The tutorial
 Idea → leraar-idea (idea brief) → leraar-plan (tutorial) → leraar-guide (guided build) → leraar-verify (check)
 ```
 
-Input: an idea brief (`leraar/idee.md`), or the learner's own idea.
+Input: an idea brief (`leraar/idea.md`), or the learner's own idea.
 Output: a tutorial folder inside the learning project.
 
 ## Setup
@@ -35,7 +35,7 @@ Create inside the learning project:
 ```
 <learning-project>/
 ├── leraar/
-│   ├── idee.md           # idea brief (if from leraar-idea)
+│   ├── idea.md           # idea brief (if from leraar-idea)
 │   ├── tutorial.md       # overview, objectives, dated docs, DoD
 │   ├── PROGRESS.md       # tracker
 │   └── steps/
