@@ -1,0 +1,10 @@
+{
+  "name": "mijn-leraar",
+  "version": "0.1.0",
+  "description": "Agent-agnostic skills that create and drive adaptive, step-by-step build tutorials ending in real code with real function.",
+  "keywords": ["pi-package", "skills", "learning", "tutorial", "education"],
+  "license": "MIT",
+  "pi": {
+    "skills": ["./skills"]
+  }
+}
