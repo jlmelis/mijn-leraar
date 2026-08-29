@@ -74,7 +74,10 @@ From the template. Required sections:
 From the step template. Rules:
 
 - **One concept per step.** If a step needs more than one new concept, split it.
-- **Small steps.** The "Do" section guidance is roughly 10 lines max — the learner writes the code, not the tutorial.
+- **Steps are essences, not code.** Write *what must be built* — files to create/modify and their responsibilities, behavior, data flow, and the techniques/APIs to demonstrate — precisely enough that the guide can generate the exact code at presentation time without seeing it. Do not pre-write the code: the guide materializes it adaptively against the learner's actual project, so it stays correct even when the learner goes off-script or fixed a bug along the way.
+- **Pin the pedagogical contract in Requirements.** If a step must use a specific technique or API, say so explicitly (e.g. "must use `useReducer`, not `useState`"). The guide may not skip these.
+- **Verify stays concrete and runnable.** Commands and expected behavior/outputs, written by plan — independent of the code the guide later generates, so leraar-verify can check without the guide.
+- **Code in steps is a last resort.** Add a `Reference` section only when regeneration is risky or expensive: tricky regexes, exact foreign API shapes, known-good config. Keep it minimal; omit it entirely when the guide can safely generate everything.
 - **Every step ends with Verify and Commit.** A step that can't be verified or committed is too big; split it.
 - Steps are numbered `00-setup`, `01-...`, up to a final step whose Verify criterion is the Definition of Done.
 - **Seed 1–3 likely pitfalls** into each step's "Watch out" section. They will grow as learners hit real bugs.
@@ -91,6 +94,7 @@ One commit: the initialized project plus the `leraar/` folder.
 
 - Small verified steps catch problems early and keep motivation high.
 - Committing after each step means git history is a progress tracker and a safety net: the learner can always see where they are and roll back.
+- Essence-based steps keep large tutorials cheap to create and forever correct: plan captures intent without pre-figuring every line, and the guide generates each step's code against the learner's real project, so deviations and fixed bugs are absorbed by later steps instead of invalidating prewritten code.
 - The final step must deliver the Definition of Done — the tutorial ends when the learner has something real, not when the step list runs out.
 
 ## Edge Cases
@@ -100,6 +104,7 @@ One commit: the initialized project plus the `leraar/` folder.
 | Learner has their own idea, no brief | Accept it. Run the real-function quality gate (see leraar-idea) and reshape if needed before planning. |
 | Docs are version-specific or paywalled | Note the exact version in tutorial.md, link what's public, flag it in PROGRESS.md notes. |
 | Learner wants to skip setup | Skip step 00's actions but keep the step; note the chosen toolchain in tutorial.md. |
+| A step needs code that's risky to regenerate | Put it in the step's `Reference` section — last resort only; keep it minimal. |
 | Step list gets long (> ~12 steps) | Check for steps that can be merged without merging concepts. |
 
 ## References

@@ -7,8 +7,8 @@
 | Skill | Job |
 |---|---|
 | `leraar-idea` | No project idea? Generates real ones. Quality-gates any idea against "real function". |
-| `leraar-plan` | Creates the tutorial: `tutorial.md`, numbered step files, `PROGRESS.md` tracker — with current official docs linked and dated. |
-| `leraar-guide` | Walks you through step by step. Coach mode by default (you type, it teaches); adapts the plan in flight. |
+| `leraar-plan` | Creates the tutorial: `tutorial.md`, numbered step files (essences — what to build, not the code), `PROGRESS.md` tracker — with current official docs linked and dated. |
+| `leraar-guide` | Walks you through step by step, generating each step's code in flight against what you've actually written. Coach mode by default (you type, it teaches); adapts the plan in flight. |
 | `leraar-verify` | Honestly checks your work against the step's criteria before you call a step done. |
 
 ## Install
@@ -40,7 +40,7 @@ ln -s /path/to/mijn-leraar/skills/leraar-* ~/.claude/skills/
 │   ├── idea.md          # the idea (and why it's real)
 │   ├── tutorial.md      # objectives, dated docs, definition of done
 │   ├── PROGRESS.md      # the tracker (current step, statuses, notes)
-│   └── steps/           # one concept per step
+│   └── steps/           # one concept per step (essences — the guide generates the code)
 │       ├── 00-setup.md
 │       └── ...
 ├── .gitignore

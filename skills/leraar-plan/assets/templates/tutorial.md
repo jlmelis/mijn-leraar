@@ -27,4 +27,4 @@ The tutorial is complete when:
 ## How to use this tutorial
 - Start or continue with `leraar-guide`. Coach mode by default.
 - Progress lives in `PROGRESS.md`. Git history is the backup tracker.
-- Ask to elaborate, slow down, skip, or change direction at any time — the plan adapts in flight.
+- Steps are essences: the guide generates the concrete code for each step in flight, fitted to what you've actually written. Ask to elaborate, slow down, skip, or change direction at any time — the plan adapts.
