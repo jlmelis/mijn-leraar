@@ -2,7 +2,8 @@
 name: leraar-guide
 description: >
   Drives the guided build of a tutorial created by leraar-plan. Walks the
-  learner through steps one at a time, verifies real progress (never
+  learner through steps one at a time, presenting code in small rounds
+  rather than walls, verifies real progress (never
   trusts "it works"), commits at each step, and updates the PROGRESS.md
   tracker. Adapts the plan in flight: elaborates steps, splits them,
   adds pitfall notes from real bugs, and handles skips and direction
@@ -30,7 +31,7 @@ Idea → leraar-idea (idea brief) → leraar-plan (tutorial) → leraar-guide (g
 1. **Read the current step** — `leraar/steps/NN-*.md` matching the `[~]` entry in PROGRESS.md.
 2. **Inspect the real project state** — read the files the step touches and their dependencies, plus recent git history. Steps are essences written before the build; the learner's actual project may differ (deviations, skipped bits, fixes).
 3. **Materialize the step's code** — turn the step's "What to build" + Requirements into the concrete code the lesson needs, fitted to the real project: real file names, real variable names, prior choices. Small and focused — only what this step teaches. If any API or syntax detail is uncertain, check the step's Docs section and the dated official docs before generating; never invent.
-4. **Present it**: What & why, then the concrete code to write — then **wait**. The learner writes it (coach mode). Do not write it for them; the learner never sees the raw essence, only the materialized step.
+4. **Present it in rounds**: What & why, then the concrete code to write — in chunks, never one wall. Split the materialized step into typeable pieces (a function + its test, a file section, a config block), present the first piece, then **wait**. Light check-in on what they typed before showing the next piece; the step's Verify and commit still happen once, at the end. Guardrail: roughly 40–60 lines of new code per round, less for newer learners. Do not write the code for them; the learner never sees the raw essence, only the materialized step. Chunked is the default — if the learner prefers the whole step at once, give it.
 5. **Verify**: when the learner says they're done (or asks for help), check the work against the step's Verify criterion and Requirements:
    - Run the verify command (or have the learner run it) and read the actual output.
    - If the step has no command, read the code and confirm the requirements honestly.
@@ -45,7 +46,7 @@ Idea → leraar-idea (idea brief) → leraar-plan (tutorial) → leraar-guide (g
 
 ## Adaptation protocol (the plan is a living document)
 
-- **"Elaborate / slow down"** → split the current step into substeps (`05a`, `05b`), renumber later steps if needed, update the objective mapping in `tutorial.md`, and update PROGRESS.md. Splitting re-specifies the step's essence — nothing prewritten to rewrite. Commit the tutorial change before continuing.
+- **"Elaborate / slow down"** → shrink the delivery first: smaller rounds — one function or file section at a time, check in after each. Only split the step's essence if its *content* (not its presentation) is the problem: split into substeps (`05a`, `05b`), renumber later steps if needed, update the objective mapping in `tutorial.md`, and update PROGRESS.md. Splitting re-specifies the step's essence — nothing prewritten to rewrite. Commit the tutorial change before continuing.
 - **"I'm stuck"** → debug together. When the cause is found, append a concrete **"Watch out"** bullet to that step so the lesson is reused. Note it in PROGRESS.md.
 - **"Skip this step"** → mark it `[x]` with a `(skipped)` note, add a Notes line, and check the next step still makes sense.
 - **"Change direction"** → confirm what changes, rewrite the remaining steps (and the Definition of Done in tutorial.md if needed) in flight, update PROGRESS.md, commit, and continue. The git history keeps the old path recoverable.
@@ -53,9 +54,10 @@ Idea → leraar-idea (idea brief) → leraar-plan (tutorial) → leraar-guide (g
 
 ## Teaching rules
 
-- **One concept at a time.** If the learner is confused, the step is too big — split it, don't cram.
+- **One concept at a time.** If the learner is confused, shrink the delivery first — smaller rounds, one function at a time. Split the step's essence only when the content itself is too much; never cram to avoid splitting.
 - **Never invent API details.** Every API call or syntax in the code you generate must trace back to the dated docs in tutorial.md. When materializing a step, re-check the step's Docs section before generating. If unsure, re-check the docs or say so.
 - **Generate only what the step needs.** The materialized code is small and focused — the learner writes the code, not the tutorial. Fitted to their real project, never a generic copy.
+- **Never dump a wall of code.** Default delivery is rounds: roughly 40–60 new lines at a time, then wait. A whole-step paste is a special request, not the default.
 - **Explain errors, don't fix them silently** (coach mode). Ask the learner to read the error out loud; guide them to the cause. Real bugs are the best lessons.
 - **Keep momentum**: end every session with PROGRESS.md updated and a commit, so the next session resumes cleanly.
 
@@ -80,7 +82,7 @@ Commit hashes: the agent reads them from git (`git rev-parse --short HEAD`); the
 | Learner deviates from the step's assumed shape | Call the mismatch out, ask how to proceed (adapt the generated code to reality, or align the project to the step), then continue. |
 | Step has a `Reference` section | Reveal it verbatim when materializing that part of the step — it exists because regeneration is risky or expensive. |
 | Step references stale docs | Re-check the official docs (URL in tutorial.md), update the step's Docs section and the tutorial.md fetch date. |
-| Learner is overwhelmed | Offer to split the current step; check the time estimate — steps should feel small. |
+| Learner is overwhelmed | Shrink the delivery first — smaller rounds, one function at a time. Offer to split the step only if its content, not its presentation, is too much. |
 | Multiple sessions | Resume by reading PROGRESS.md; restate the current step and where they are in the plan before continuing. |
 
 ## References
