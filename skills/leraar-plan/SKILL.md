@@ -93,6 +93,7 @@ One commit: the initialized project plus the `leraar/` folder.
 ## Why these rules exist
 
 - Small verified steps catch problems early and keep motivation high.
+- No step-count ceiling: the same one-concept-per-step rule makes a 3-step tutorial as valid as a 100-step one. Count follows scope — a super-small script and a months-long project both work; merge only when steps are too granular, never to hit a size target.
 - Committing after each step means git history is a progress tracker and a safety net: the learner can always see where they are and roll back.
 - Essence-based steps keep large tutorials cheap to create and forever correct: plan captures intent without pre-figuring every line, and the guide generates each step's code against the learner's real project, so deviations and fixed bugs are absorbed by later steps instead of invalidating prewritten code.
 - The final step must deliver the Definition of Done — the tutorial ends when the learner has something real, not when the step list runs out.
@@ -105,7 +106,7 @@ One commit: the initialized project plus the `leraar/` folder.
 | Docs are version-specific or paywalled | Note the exact version in tutorial.md, link what's public, flag it in PROGRESS.md notes. |
 | Learner wants to skip setup | Skip step 00's actions but keep the step; note the chosen toolchain in tutorial.md. |
 | A step needs code that's risky to regenerate | Put it in the step's `Reference` section — last resort only; keep it minimal. |
-| Step list gets long (> ~12 steps) | Check for steps that can be merged without merging concepts. |
+| Steps are over-split — many thin steps that each feel like partial concepts | Merge steps whose combined content is still a single concept. Never merge just to shrink the plan: tutorial size follows scope, and one-concept steps are the unit at any scale. |
 
 ## References
 
