@@ -47,7 +47,7 @@ ln -s /path/to/mijn-leraar/skills/leraar-* ~/.claude/skills/
 └── <real code, built step by step>
 ```
 
-Git history is the backup progress tracker — one commit per step.
+Git history is the backup progress tracker — one code commit per step, each followed by an immediate progress-update commit (the agent records the commit hash itself, never asking the learner).
 
 ## License
 

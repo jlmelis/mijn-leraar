@@ -27,7 +27,7 @@ leraar-verify can be invoked at any time, independent of leraar-guide: *"check m
    - Run the step's verify command yourself (or ask the learner to run it and paste the output).
    - Inspect the actual files against the step's Requirements checklist — steps are essences, so there is no expected code to compare against (except an optional `Reference` section).
 4. **Report per criterion**: for each Verify criterion and each Requirement, state pass / fail / partial, quoting the evidence you saw (output, code).
-5. **Update PROGRESS.md** only when all criteria pass: mark `[x]` with the commit hash, move `[~]` to the next step, update the date. For partial/fail, leave the step as current and add a Notes line stating exactly what's missing.
+5. **Update PROGRESS.md** only when all criteria pass: mark `[x]` with the commit hash, move `[~]` to the next step, update the date. Grab the hash from git yourself (`git rev-parse --short HEAD` after the learner commits) — never ask the learner for it. If the work passes but isn't committed yet, ask the learner to commit first. Commit the progress update right away so the step is marked complete in its own closure. For partial/fail, leave the step as current and add a Notes line stating exactly what's missing.
 
 ## Rules
 

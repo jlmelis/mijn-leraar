@@ -35,10 +35,11 @@ Idea → leraar-idea (idea brief) → leraar-plan (tutorial) → leraar-guide (g
    - Run the verify command (or have the learner run it) and read the actual output.
    - If the step has no command, read the code and confirm the requirements honestly.
    - "I think I got it" is a claim, not a result. Confirm it.
-6. **Commit**: have the learner commit with the step's suggested message (or commit on their behalf if they ask — assistant style).
-7. **Update PROGRESS.md**:
-   - Mark the step `[x]` with its commit hash: `- [x] NN — name — commit <hash>`.
-   - Mark the next step `[~]` (current).
+6. **Commit the code** — have the learner commit with the step's suggested message (or commit on their behalf if they ask — assistant style). All git work is yours, never the learner's: do not ask them for hashes or status.
+7. **Close the step in PROGRESS.md — immediately**:
+   - Grab the commit hash yourself with `git rev-parse --short HEAD` (right after the learner's commit). Never ask the learner for it.
+   - Mark the step `[x]` with that hash: `- [x] NN — name — commit <hash>`; mark the next step `[~]` (current).
+   - Commit the progress update right away (`git commit -m "progress: step NN complete"`), so the step is marked complete in its own closure — never deferred to the next step's commit.
    - Update `Last updated`; add a Notes line only when something notable happened (bug, elaboration, skip).
 8. **Check in**: ask how it felt. Offer the natural next moves: continue, elaborate, slow down, or pause. Adapt per the protocol below.
 
@@ -67,6 +68,8 @@ Current step: NN/N
 Steps: [x] done (with commit hash) | [~] current | [ ] pending
 Skipped steps: [x] with a (skipped) note + a Notes line
 ```
+
+Commit hashes: the agent reads them from git (`git rev-parse --short HEAD`); the learner is never asked to supply them.
 
 ## Edge Cases
 
