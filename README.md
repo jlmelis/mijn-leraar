@@ -1,6 +1,6 @@
 # mijn-leraar
 
-*Your own teacher* — agent skills that turn any learning goal into an adaptive, step-by-step build tutorial. The tutorial always ends in **real code with real function**, never a hello-world.
+*Your own teacher* — agent skills that turn any learning goal into an adaptive, step-by-step build tutorial. The tutorial, never a hello-world.
 
 ## The pipeline
 

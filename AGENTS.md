@@ -1,6 +1,6 @@
 # mijn-leraar
 
-Agent-agnostic skills (Agent Skills standard) for creating and driving adaptive, step-by-step build tutorials. The learner builds a real project while learning; progress is tracked in `PROGRESS.md`; the plan adapts in flight.
+Agent skills for creating and driving adaptive, step-by-step build tutorials. The learner builds a real project while learning; progress is tracked in `PROGRESS.md`; the plan adapts in flight.
 
 ## Structure
 
