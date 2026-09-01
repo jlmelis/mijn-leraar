@@ -74,8 +74,11 @@ From the template. Required sections:
 From the step template. Rules:
 
 - **One concept per step.** If a step needs more than one new concept, split it.
+- **Keep concepts together; keep rounds small.** A step is one concept, whatever its size — the final commit isn't the burden, the typing round is. Never split a step to shrink a commit; split it only when the concept itself is too much for one sitting.
+- **Mandate the build-up ladder.** Every step's `Build-up` section lists the ordered pieces the guide presents — chunk → method → file — each ending in something checkable (a test, an import, a run) and none over ~15–20 lines. The ladder is the pacing mechanism for steps of any size: if a piece can't stay small, break it into more pieces — don't rewrite the step.
+- **Model real-project structure, not script dumps.** `What to build` names every file and what belongs in it by *conceptual cohesion*: split files along real boundaries — role, responsibility, lifecycle, why a thing changes — never mechanically by line count. A file holding one coherent idea is fine at any size; a file holding unrelated ideas should be split even when small. Keep the entry point thin; long constants, prompts, and payloads live in their own module.
 - **Steps are essences, not code.** Write *what must be built* — files to create/modify and their responsibilities, behavior, data flow, and the techniques/APIs to demonstrate — precisely enough that the guide can generate the exact code at presentation time without seeing it. Do not pre-write the code: the guide materializes it adaptively against the learner's actual project, so it stays correct even when the learner goes off-script or fixed a bug along the way.
-- **Pin the pedagogical contract in Requirements.** If a step must use a specific technique or API, say so explicitly (e.g. "must use `useReducer`, not `useState`"). The guide may not skip these.
+- **Pin the pedagogical contract in Requirements.** If a step must use a specific technique or API, say so explicitly (e.g. "must use `useReducer`, not `useState`") — same for modularity ("the prompt lives in `world.py`, not `main.py`"). The guide may not skip these.
 - **Verify stays concrete and runnable.** Commands and expected behavior/outputs, written by plan — independent of the code the guide later generates, so leraar-verify can check without the guide.
 - **Code in steps is a last resort.** Add a `Reference` section only when regeneration is risky or expensive: tricky regexes, exact foreign API shapes, known-good config. Keep it minimal; omit it entirely when the guide can safely generate everything.
 - **Every step ends with Verify and Commit.** A step that can't be verified or committed is too big; split it.
@@ -93,6 +96,7 @@ One commit: the initialized project plus the `leraar/` folder.
 ## Why these rules exist
 
 - Small verified steps catch problems early and keep motivation high.
+- Steps build up chunk → method → file, and files follow real-project structure: the learner types small pieces that compose into modular code — never a wall — and the tutorial itself demonstrates the shape a real project of that size would have.
 - No step-count ceiling: the same one-concept-per-step rule makes a 3-step tutorial as valid as a 100-step one. Count follows scope — a super-small script and a months-long project both work; merge only when steps are too granular, never to hit a size target.
 - Committing after each step means git history is a progress tracker and a safety net: the learner can always see where they are and roll back.
 - Essence-based steps keep large tutorials cheap to create and forever correct: plan captures intent without pre-figuring every line, and the guide generates each step's code against the learner's real project, so deviations and fixed bugs are absorbed by later steps instead of invalidating prewritten code.
@@ -106,6 +110,8 @@ One commit: the initialized project plus the `leraar/` folder.
 | Docs are version-specific or paywalled | Note the exact version in tutorial.md, link what's public, flag it in PROGRESS.md notes. |
 | Learner wants to skip setup | Skip step 00's actions but keep the step; note the chosen toolchain in tutorial.md. |
 | A step needs code that's risky to regenerate | Put it in the step's `Reference` section — last resort only; keep it minimal. |
+| A step is large but one concept | Keep it whole — deliver it in more, smaller rounds via the Build-up ladder; the commit lands once at the end. Split the step only if the content, not the typing, is too much. |
+| A file mixes unrelated concerns | Split it along its conceptual boundary, and make the step that adds the new part build the new file. Never split to stay under a line count. |
 | Steps are over-split — many thin steps that each feel like partial concepts | Merge steps whose combined content is still a single concept. Never merge just to shrink the plan: tutorial size follows scope, and one-concept steps are the unit at any scale. |
 
 ## References

@@ -30,8 +30,8 @@ Idea → leraar-idea (idea brief) → leraar-plan (tutorial) → leraar-guide (g
 
 1. **Read the current step** — `leraar/steps/NN-*.md` matching the `[~]` entry in PROGRESS.md.
 2. **Inspect the real project state** — read the files the step touches and their dependencies, plus recent git history. Steps are essences written before the build; the learner's actual project may differ (deviations, skipped bits, fixes).
-3. **Materialize the step's code** — turn the step's "What to build" + Requirements into the concrete code the lesson needs, fitted to the real project: real file names, real variable names, prior choices. Small and focused — only what this step teaches. If any API or syntax detail is uncertain, check the step's Docs section and the dated official docs before generating; never invent.
-4. **Present it in rounds**: What & why, then the concrete code to write — in chunks, never one wall. Split the materialized step into typeable pieces (a function + its test, a file section, a config block), present the first piece, then **wait**. Light check-in on what they typed before showing the next piece; the step's Verify and commit still happen once, at the end. Guardrail: roughly 40–60 lines of new code per round, less for newer learners. Do not write the code for them; the learner never sees the raw essence, only the materialized step. Chunked is the default — if the learner prefers the whole step at once, give it.
+3. **Materialize the step's code** — turn the step's "What to build" + Requirements into the concrete code the lesson needs, fitted to the real project: real file names, real variable names, prior choices. Small and focused — only what this step teaches. **Modular by conceptual cohesion**: split files along real boundaries (role, responsibility, why a thing changes), thin entry point, prompts and constants in their own module — the generated code models good structure even when the essence is loose; never split files by line count. If any API or syntax detail is uncertain, check the step's Docs section and the dated official docs before generating; never invent. Step size in lines is fine — the Build-up ladder keeps it typeable; never hand over a wall.
+4. **Present it in small rounds, in the step's Build-up order**: What & why, then the concrete code to write. The `Build-up` section is the mandated ladder (chunk → method → file); if the step lacks one, derive that order yourself. A round is one small unit — a few lines, a single function, one file section, one test — and **every round ends in something checkable** (a test, an import, a run) so progress is visible before the next. Guardrail: **5–20 lines of new code per round** (less for newer learners); never more than ~25 lines without a checkpoint in between. Present the first piece, then **wait**; check in lightly on what they typed before showing the next. The step's Verify and commit still happen once, at the end. Do not write the code for them; the learner never sees the raw essence, only the materialized step. Chunked is the default — if the learner prefers the whole step at once, give it.
 5. **Verify**: when the learner says they're done (or asks for help), check the work against the step's Verify criterion and Requirements:
    - Run the verify command (or have the learner run it) and read the actual output.
    - If the step has no command, read the code and confirm the requirements honestly.
@@ -46,7 +46,8 @@ Idea → leraar-idea (idea brief) → leraar-plan (tutorial) → leraar-guide (g
 
 ## Adaptation protocol (the plan is a living document)
 
-- **"Elaborate / slow down"** → shrink the delivery first: smaller rounds — one function or file section at a time, check in after each. Only split the step's essence if its *content* (not its presentation) is the problem: split into substeps (`05a`, `05b`), renumber later steps if needed, update the objective mapping in `tutorial.md`, and update PROGRESS.md. Splitting re-specifies the step's essence — nothing prewritten to rewrite. Commit the tutorial change before continuing.
+- **"Elaborate / slow down"** → shrink the delivery first: smaller rounds — one chunk (a few lines) at a time, check in after each. Only split the step's essence if its *content* (not its presentation) is the problem: split into substeps (`05a`, `05b`), renumber later steps if needed, update the objective mapping in `tutorial.md`, and update PROGRESS.md. Splitting re-specifies the step's essence — nothing prewritten to rewrite. Commit the tutorial change before continuing.
+- **The step is big but one concept** → don't split for size. Present it in more, smaller rounds — the Build-up ladder (or your derived order) is the pacing mechanism, and the step's Verify and commit still land once, at the end. Split into substeps only when the *content* is too much for one sitting or the learner is overwhelmed by what they're learning — never to shrink a commit.
 - **"I'm stuck"** → debug together. When the cause is found, append a concrete **"Watch out"** bullet to that step so the lesson is reused. Note it in PROGRESS.md.
 - **"Skip this step"** → mark it `[x]` with a `(skipped)` note, add a Notes line, and check the next step still makes sense.
 - **"Change direction"** → confirm what changes, rewrite the remaining steps (and the Definition of Done in tutorial.md if needed) in flight, update PROGRESS.md, commit, and continue. The git history keeps the old path recoverable.
@@ -54,10 +55,11 @@ Idea → leraar-idea (idea brief) → leraar-plan (tutorial) → leraar-guide (g
 
 ## Teaching rules
 
-- **One concept at a time.** If the learner is confused, shrink the delivery first — smaller rounds, one function at a time. Split the step's essence only when the content itself is too much; never cram to avoid splitting.
+- **One concept at a time.** If the learner is confused, shrink the delivery first — smaller rounds, one chunk at a time. Split the step's essence only when the content itself is too much; never cram to avoid splitting.
 - **Never invent API details.** Every API call or syntax in the code you generate must trace back to the dated docs in tutorial.md. When materializing a step, re-check the step's Docs section before generating. If unsure, re-check the docs or say so.
 - **Generate only what the step needs.** The materialized code is small and focused — the learner writes the code, not the tutorial. Fitted to their real project, never a generic copy.
-- **Never dump a wall of code.** Default delivery is rounds: roughly 40–60 new lines at a time, then wait. A whole-step paste is a special request, not the default.
+- **Never dump a wall of code.** Default delivery is small rounds: 5–20 new lines at a time, in the step's Build-up order, each round ending in something checkable. A whole-step paste is a special request, not the default.
+- **Build up, don't dump.** Code appears as chunk → method → file: each round is one small unit, and files grow by adding focused methods — never by pasting a block into one file. If a file starts holding unrelated ideas, split it along its conceptual boundary and build the new module in its own rounds — never present more at once.
 - **Explain errors, don't fix them silently** (coach mode). Ask the learner to read the error out loud; guide them to the cause. Real bugs are the best lessons.
 - **Keep momentum**: end every session with PROGRESS.md updated and a commit, so the next session resumes cleanly.
 
@@ -82,7 +84,8 @@ Commit hashes: the agent reads them from git (`git rev-parse --short HEAD`); the
 | Learner deviates from the step's assumed shape | Call the mismatch out, ask how to proceed (adapt the generated code to reality, or align the project to the step), then continue. |
 | Step has a `Reference` section | Reveal it verbatim when materializing that part of the step — it exists because regeneration is risky or expensive. |
 | Step references stale docs | Re-check the official docs (URL in tutorial.md), update the step's Docs section and the tutorial.md fetch date. |
-| Learner is overwhelmed | Shrink the delivery first — smaller rounds, one function at a time. Offer to split the step only if its content, not its presentation, is too much. |
+| Learner is overwhelmed | Shrink the delivery first — smaller rounds, one chunk at a time. Offer to split the step only if its content, not its presentation, is too much. |
+| Step materializes into a wall of code | Present it in more, smaller rounds — a wall is a pacing problem, not a size problem. Split the step only if the content itself overwhelms. If a file mixes unrelated ideas, split it along its conceptual boundary. Note it in PROGRESS.md. |
 | Multiple sessions | Resume by reading PROGRESS.md; restate the current step and where they are in the plan before continuing. |
 
 ## References

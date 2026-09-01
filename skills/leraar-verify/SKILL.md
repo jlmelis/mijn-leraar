@@ -32,7 +32,7 @@ leraar-verify can be invoked at any time, independent of leraar-guide: *"check m
 ## Rules
 
 - **Be honest, be specific.** "Doesn't work" is not a finding; "the verify command exits 1 because <file> is missing" is.
-- **Judge behavior, not prewritten code.** Steps contain essences, not expected code. Verify against the Verify command and the Requirements checklist; the only prewritten code in a step is the optional `Reference` section.
+- **Judge behavior, not prewritten code.** Steps contain essences, not expected code. Verify against the Verify command and the Requirements checklist; the only prewritten code in a step is the optional `Reference` section. A step's `Build-up` section orders the guide's rounds — it is a presentation aid, not a criterion.
 - **Never mark done without evidence.** If you couldn't run the verify command, say so and ask.
 - **Coach mode applies** when invoked through the guide: report the gap, don't silently fix it. If the learner asks you to fix it, that's a mode change — confirm first.
 
